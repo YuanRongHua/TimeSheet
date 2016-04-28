@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="yuanronghua.TimeSheet.dao.BossDAO">
+	<resultMap type="yuanronghua.TimeSheet.vo.Boss" id="BossResultMap">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="phone" column="phone" />
+		<result property="address" column="address" />
+	</resultMap>
+
+	<select id="queryBoss"  resultType="yuanronghua.TimeSheet.vo.Boss" parameterType="java.lang.String">
+		select * from boss where name = #{boss_name} 
+	</select>
+	
+	<insert id="insertBoss" parameterType="yuanronghua.TimeSheet.vo.Boss" useGeneratedKeys="true" keyProperty="id" >
+	   insert boss(name) values(#{name})
+	</insert>
+	
+	
+</mapper>
+   
+
+ 

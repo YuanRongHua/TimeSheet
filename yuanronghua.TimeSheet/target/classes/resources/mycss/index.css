@@ -1,0 +1,35 @@
+
+#kkpager_btn_go_input {
+    width: 36px;
+    height: 18px;
+}
+
+#kkpager .pageBtnWrap {
+    float: right;
+}
+
+#kkpager .infoTextAndGoPageBtnWrap {
+    padding-right: 35px;
+}
+
+#kkpager {
+	margin-bottom: 50px;
+}
+
+.tr_content{
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.btn {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.modal-lg {
+	width: 50%;
+}
+
+.dropdown-menu {
+	    min-width: none;
+}

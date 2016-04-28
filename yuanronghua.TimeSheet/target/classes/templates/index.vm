@@ -1,0 +1,206 @@
+#parse("bootstrap.vm")
+<html lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+	
+	<link rel="stylesheet" type="text/css" href="../kkpage/kkpager_blue.css" />
+	
+	<!-- mycss -->
+    <link href="../mycss/index.css" rel="stylesheet">
+    
+    <link href="../jquery-datepicker/css/jquery-ui-1.10.1.css" rel="stylesheet">
+    
+    <link href="../jquery-datepicker/css/cangas.datepicker.css" rel="stylesheet">
+    
+    <link href="../dynamic-clock/dynamic-clock.css" rel="stylesheet">
+
+</head>
+<body >
+<!-- 
+	<div class="navbar-fixed-top">
+	    <ul class="nav nav-pills">
+	      <li role="presentation" class="active"><a href="#">Home</a></li>
+	      <li role="presentation"><a href="http://localhost:8088/time.vhtml">Profile</a></li>
+	      <li role="presentation"><a href="#">Messages</a></li>
+	    </ul>
+	    <div>123</div>
+	</div>
+ -->
+ 
+     <div class="row navbar-fixed-top" >
+  <div class="col-xs-12 col-sm-6 col-md-8" > <marquee direction=right><h3>Welcome to here!</h3></marquee></div>
+  <div class="col-xs-6 col-md-4" align="right"><img alt="login" src="../image/login.png" width="30">
+    <div class="btn-group">
+  <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+    <span id="login_span"></span> <span class="caret"></span>
+  </div>
+  <ul class="dropdown-menu">
+    <li><a href="/logout.do">Logout</a></li>
+  </ul>
+</div>
+  </div>
+</div>
+   <br/>
+   <br/>
+   <!--
+    <div id="clock" class="light">
+            <div class="display" >
+                <div class="date"></div>
+                <div class="digits"></div>
+            </div>
+        </div>
+        -->
+     <br/>
+    <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#myModal" onclikc=' $("input[type=reset]").trigger("click");' > 新增 </button>
+    <button type="button" class="btn btn-success"  data-toggle="modal" data-target="#payrollModal"  > 结算</button>
+    <div >
+        <table class="table table-bordered table-hover"  id="main_table">
+            <tr>
+                <th style="width:5%">#</th><th style="width:18%">时间</th><th style="width:20%" >地点</th><th style="width:10%" >时长</th><th style="width:10%" >日薪</th><th  >操作</th>
+            </tr>
+        </table>
+    </div>
+    <div >
+        <div id="kkpager"></div>
+    </div>
+    
+    <!-- Large modal -->
+
+<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">新增</h3>
+      </div>
+      <div class="panel-body">
+        <form id="timesheet_form"  method="post">
+        <input type = "hidden" id="id" name="id"/>
+        <input type = "hidden" id="account_id" name="account_id"/>
+        <input type = "hidden" id="boss_id" name="boss_id"/>
+          <div class="form-group">
+            <label for="exampleInputEmail1">地点</label>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Address">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">时间</label>
+            <input type="text" class="form-control" value="2015-01-28" id="dateTime" name="dateTime" readonly >
+          </div>
+          <div class="form-group">
+          <label for="exampleInputPassword1">时间</label>
+          <select class="form-control" id="time_hour" name="time_hour">
+              <option value="1">1小时</option>
+              <option value="2">2小时</option>
+              <option value="3">3小时</option>
+              <option value="4">4小时</option>
+              <option value="5">5小时</option>
+              <option value="6">6小时</option>
+              <option value="7">7小时</option>
+              <option value="8">8小时</option>
+              <option value="9">9小时</option>
+              <option value="10">10小时</option>
+              <option value="11">11小时</option>
+              <option value="12">12小时</option>
+              <option value="13">13小时</option>
+              <option value="14">14小时</option>
+              <option value="15">15小时</option>
+              <option value="16">16小时</option>
+            </select>
+            </div>
+            
+	          <div class="form-group">
+	            <label for="exampleInputSalary">日薪</label>
+	            <div class="input-group">
+	              <div class="input-group-addon">人民币</div>
+	              <input type="text" class="form-control" id="salary" name="salary" placeholder="Amount">
+	              <div class="input-group-addon">.00</div>
+	            </div>
+	          </div>
+          
+	          <div class="form-group">
+	            <label for="boss">BOSS</label>
+	            <input type="text" class="form-control" id="boss_name" name="boss_name" placeholder="Boss">
+	          </div>
+          <button type="submit" id="submit" class="btn btn-default" >Submit</button>
+          <input type="reset" style="display:none;" />
+        </form>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+  
+  
+  <div id="payrollModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">结算</h3>
+      </div>
+      <div class="panel-body">
+        <form id="payroll_form"  method="post">
+          <div class="form-group">
+            <label for="exampleInputPassword1">开始时间</label>
+            <input type="text" class="form-control"  id="begin_time" name="begin_time" onchange="dateTimeOnclick();" readonly >
+          </div>
+          
+          <div class="form-group">
+            <label for="exampleInputPassword1">结束时间</label>
+            <input type="text" class="form-control"  id="end_time" name="end_time" onchange="dateTimeOnclick();" readonly >
+          </div>
+         
+        <div class="panel panel-default">
+		  <div class="panel-body">
+		  <p class="bg-primary">工资单  </p>
+		    <p class="text-primary">姓名:<span id="span-name"></span> </p>
+		   <p class="text-primary"> 结算区间:<span id="span-begin-time"></span><span id="span-end-time"></span> </p>
+		<p class="text-primary"> 签到天数:<span id="span-days"></span> </p>
+		 <p class="text-primary">总时长(小时):<span id="span-hours"></span> </p>
+		 <p class="text-primary">应结算金额(元):<span id="span-pay"></span> </p>
+		 
+		 <button type="button" id="salary_list_button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right"  >
+		  工时明细
+		</button>
+		 <br>
+		 <br>
+		  <button type="button"  class="btn btn-default" >结算</button>
+		  </div>
+		
+		</div>
+            <br/>
+            <br/>
+        </form>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+    
+</body>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    
+    <script src="../jquery-datepicker/jquery-ui-1.10.1.min.js"></script>
+    
+    <script src="../jquery-datepicker/jquery.ui.datepicker-zh-CN.js"></script>
+    
+    <!-- page -->
+    
+    <script type="text/javascript" src="../kkpage/kkpager.min.js"></script>
+    
+    <script type="text/javascript" src="../dynamic-clock/moment.min.js"></script>
+    
+    <script type="text/javascript" src="../dynamic-clock/dynamic-clock.js"></script>
+    
+    <script src="../myjs/index.js"></script>
+    
+    
+    
+    
+</html>

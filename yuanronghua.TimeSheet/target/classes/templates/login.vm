@@ -1,0 +1,40 @@
+#parse("bootstrap.vm")
+
+<html lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Login</title>
+    
+    <!-- mycss -->
+    <link href="../mycss/login.css" rel="stylesheet">
+   
+</head>
+    <body valign="center">
+    <div id="main_div">
+	    <div align="center">
+	         <img alt="login" src="../image/login.png" width="100">
+	        <h1>Login</h3>
+	        <br>
+	    </div>
+	    <div align="center">
+		    <form id="login_form" method="post" >
+				  <div class="form-group">
+				    <input type="text" class="form-control" id="name" name="name" placeholder="Login Name" value="Administrator">
+				  </div>
+				  <div class="form-group">
+				    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+				  </div>
+				  <div class="form-group">
+				      <button type="submit" id="login" class="btn btn-default" onload="login()">Login</button>
+				  </div>
+			</form>
+		</div>
+	</div>
+    </body>
+   <script type="text/javascript" src="../myjs/login.js"></script>
+    
+</html>

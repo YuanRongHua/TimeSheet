@@ -1,0 +1,45 @@
+<html lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap css js</title>
+    <!-- Bootstrap -->
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../bootstrap/plugins/jquery-1.12.0.min.js"></script>
+    
+    <script type="text/javascript" src="../jqueryForm/jquery.form.js"></script>
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    
+    <script src="../jqueryCookie/jquery.cookie.js"></script>
+    
+    <script type="text/javascript">
+	    $.ajaxSetup({ 
+	        //如果服务端是用对象接收json 
+	        contentType : 'application/json' 
+	       });
+	    
+	    
+	    function serializeArrayToJson(serializeArray){
+	        var json="{";
+	        $.each(serializeArray, function(i, field){
+	            if(serializeArray.length-1 == i){
+	                json += "\""+field.name + "\":\"" + field.value + "\"";
+	            }else{
+	                json += "\""+field.name + "\":\"" + field.value + "\",";
+	            }
+	            
+	          });
+	        json +="}";
+	        return json;
+	    }
+    </script>
+    
+</html>

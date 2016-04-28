@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="yuanronghua.TimeSheet.dao.TimeSheetDAO">
+	<resultMap type="yuanronghua.TimeSheet.vo.TimeSheet" id="TimeSheetResultMap">
+		<result property="id" column="id" />
+		<result property="dateTime" column="datetime" />
+		<result property="address" column="address" />
+		<result property="time_hour" column="time_hour" />
+		<result property="salary" column="salary" />
+		<result property="account_id" column="account_id" />
+		<result property="boss_id" column="boss_id" />
+		<result property="boss_name" column="boss_name" />
+	</resultMap>
+
+	<select id="queryAllCount"  resultType="java.lang.Integer" >
+		select count(*) from timesheet
+	</select>
+	
+	<select id="query" resultMap="TimeSheetResultMap" parameterType="yuanronghua.TimeSheet.common.Query">
+	   select a.*,b.name boss_name from ( select * from timesheet limit #{start},#{pageSize} ) a left join boss b on a.boss_id = b.id
+	</select>
+	
+	<select id="queryByDate" resultMap="TimeSheetResultMap" parameterType="yuanronghua.TimeSheet.common.Query">
+	   select * from timesheet where datetime between #{begin_time} and #{end_time}
+	</select>
+	
+	<insert id="add" parameterType="yuanronghua.TimeSheet.vo.TimeSheet" >
+	   insert into timesheet(datetime, address, time_hour, salary, account_id, boss_id) values(#{dateTime}, #{address}, #{time_hour}, #{salary}, #{account_id}, #{boss_id});
+	</insert>
+	
+	<delete id="remove" parameterType="yuanronghua.TimeSheet.vo.TimeSheet" >
+	   delete from timesheet where id = #{id}
+	</delete>
+	
+	<update id="update" parameterType="yuanronghua.TimeSheet.vo.TimeSheet" >
+	   update timesheet 
+	       <set>
+	           <if test="address != null">
+	               address = #{address},
+	           </if>
+	           <if test="dateTime != null">
+                   dateTime = #{dateTime},
+               </if>
+               <if test="time_hour != null">
+                   time_hour = #{time_hour},
+               </if>
+                <if test="salary != null">
+                   salary = #{salary},
+               </if>
+                <if test="boss_id != null">
+                   boss_id = #{boss_id}
+               </if>
+	       </set>
+	       where id = #{id}
+	</update>
+	
+</mapper>
+   
+
+ 
