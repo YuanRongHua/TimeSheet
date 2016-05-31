@@ -84,6 +84,6 @@
             </plugin>
         </plugins>
     </build>
-  
+  <!-- Ok -->
     <packaging>war</packaging>
 </project>
